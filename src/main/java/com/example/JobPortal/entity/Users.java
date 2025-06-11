@@ -7,6 +7,8 @@ package com.example.JobPortal.entity;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.CascadeType;
@@ -27,7 +29,7 @@ import jakarta.validation.constraints.NotEmpty;
 public class Users {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(unique = true)
@@ -43,7 +45,18 @@ public class Users {
     @JoinColumn(name = "usersTypeId", referencedColumnName = "id")
     private UsersType usersTypeId;
 
+    private boolean isActive;
+
     public Users() {
+    }
+
+    public Users(int id, String email, String password, Date registraionDate, boolean isActive, UsersType usersTypeId) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.registraionDate = registraionDate;
+        this.usersTypeId = usersTypeId;
+        this.isActive = isActive;
     }
 
     public int getId() {
@@ -84,6 +97,10 @@ public class Users {
 
     public void setUsersTypeId(UsersType usersTypeId) {
         this.usersTypeId = usersTypeId;
+    }
+
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     @Override
@@ -136,7 +153,5 @@ public class Users {
         }
         return Objects.equals(this.usersTypeId, other.usersTypeId);
     }
-
-
 
 }

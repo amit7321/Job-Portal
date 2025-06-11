@@ -22,7 +22,7 @@ import jakarta.persistence.OneToMany;
 public class UsersType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String userTypeName;

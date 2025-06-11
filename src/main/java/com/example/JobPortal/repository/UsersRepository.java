@@ -4,6 +4,8 @@
  */
 package com.example.JobPortal.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,8 +15,9 @@ import com.example.JobPortal.entity.Users;
  *
  * @author amitg
  */
-
 @Repository
-public interface UsersRepository extends JpaRepository<Users, Integer> {    
+public interface UsersRepository extends JpaRepository<Users, Integer> {
+
+    Optional<Users> findByEmail(String email);
 
 }
